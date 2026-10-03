@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raj & Priya | Engagement</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: Georgia, "Times New Roman", serif;
+  background: #f8efe5;
+  color: #4a2b25;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+.invitation {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  padding: 45px 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  background:
+    radial-gradient(circle at top left, rgba(214,169,120,.25), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(190,130,100,.18), transparent 35%),
+    #fffaf5;
+}
+
+.card {
+  width: 100%;
+  padding: 45px 25px;
+  border: 1px solid #d8b08c;
+  border-radius: 22px;
+  box-shadow: 0 15px 45px rgba(83, 48, 36, .15);
+  background: rgba(255,255,255,.72);
+  backdrop-filter: blur(5px);
+}
+
+.small {
+  font-size: 14px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #9a684c;
+  margin-bottom: 22px;
+}
+
+h1 {
+  font-size: 48px;
+  line-height: 1.1;
+  font-weight: normal;
+  color: #713c32;
+}
+
+.amp {
+  display: block;
+  font-size: 27px;
+  margin: 10px 0;
+  color: #b07a55;
+  font-style: italic;
+}
+
+.divider {
+  width: 75px;
+  height: 1px;
+  background: #c49570;
+  margin: 28px auto;
+}
+
+.invite {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #63453c;
+}
+
+.date {
+  margin-top: 28px;
+  font-size: 24px;
+  color: #713c32;
+}
+
+.venue {
+  margin-top: 12px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #70534a;
+}
+
+.family {
+  margin-top: 35px;
+  font-size: 15px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #9a684c;
+}
+
+.countdown {
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.time {
+  min-width: 60px;
+  padding: 10px 5px;
+  border-radius: 10px;
+  background: #f1dfce;
+}
+
+.time strong {
+  display: block;
+  font-size: 20px;
+  color: #713c32;
+}
+
+.time span {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #87685b;
+}
+
+button {
+  margin-top: 32px;
+  border: none;
+  padding: 13px 25px;
+  border-radius: 30px;
+  background: #713c32;
+  color: white;
+  font-size: 15px;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 7px 18px rgba(113,60,50,.25);
+}
+
+.message {
+  display: none;
+  margin-top: 22px;
+  padding: 16px;
+  border-radius: 12px;
+  background: #f8eadc;
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+.flower {
+  font-size: 25px;
+  color: #b07a55;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 380px) {
+  h1 {
+    font-size: 40px;
+  }
+
+  .card {
+    padding: 35px 18px;
+  }
+
+  .time {
+    min-width: 52px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="invitation">
+  <div class="card">
+
+    <div class="flower">✦ ❀ ✦</div>
+
+    <div class="small">Together with their families</div>
+
+    <h1>
+      Raj
+      <span class="amp">&</span>
+      Priya
+    </h1>
+
+    <div class="divider"></div>
+
+    <p class="invite">
+      With hearts full of happiness,<br>
+      we invite you to celebrate<br>
+      their beautiful engagement.
+    </p>
+
+    <div class="date">
+      18 October 2026
+    </div>
+
+    <div class="venue">
+      <strong>Rajwadi Party Plot</strong><br>
+      Junagadh Road
+    </div>
+
+    <div class="countdown">
+      <div class="time">
+        <strong id="days">--</strong>
+        <span>Days</span>
+      </div>
+
+      <div class="time">
+        <strong id="hours">--</strong>
+        <span>Hours</span>
+      </div>
+
+      <div class="time">
+        <strong id="minutes">--</strong>
+        <span>Minutes</span>
+      </div>
+
+      <div class="time">
+        <strong id="seconds">--</strong>
+        <span>Seconds</span>
+      </div>
+    </div>
+
+    <div class="family">
+      With love & blessings<br>
+      <strong>Baldha Parivar</strong>
+    </div>
+
+    <button onclick="showMessage()">
+      Open Invitation
+    </button>
+
+    <div class="message" id="message">
+      Your presence and blessings will make<br>
+      this special day even more memorable. ❤️
+    </div>
+
+  </div>
+</div>
+
+<script>
+const eventDate = new Date("October 18, 2026 18:00:00").getTime();
+
+function updateCountdown() {
+  const now = new Date().getTime();
+  const distance = eventDate - now;
+
+  if (distance <= 0) {
+    document.getElementById("days").innerText = "0";
+    document.getElementById("hours").innerText = "0";
+    document.getElementById("minutes").innerText = "0";
+    document.getElementById("seconds").innerText = "0";
+    return;
+  }
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(
+    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
+  const minutes = Math.floor(
+    (distance % (1000 * 60 * 60)) / (1000 * 60)
+  );
+  const seconds = Math.floor(
+    (distance % (1000 * 60)) / 1000
+  );
+
+  document.getElementById("days").innerText = days;
+  document.getElementById("hours").innerText = hours;
+  document.getElementById("minutes").innerText = minutes;
+  document.getElementById("seconds").innerText = seconds;
+}
+
+function showMessage() {
+  const message = document.getElementById("message");
+  message.style.display =
+    message.style.display === "block" ? "none" : "block";
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
